@@ -1,5 +1,6 @@
 import { Product } from "@/interfaces";
 import React from "react";
+import { ProductGridItem } from "./ProductGridItem";
 
 interface Props {
   products: Product[];
@@ -10,9 +11,7 @@ export function ProductGrid({ products }: Props) {
     <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
       {
         products.map(product => (
-          <div key={product.slug}>
-            {JSON.stringify(product, null, 2)}
-          </div>
+          <ProductGridItem key={product.slug} product={product} />
         ))
       }
     </div>
