@@ -5,3 +5,4 @@ export * from "./ui/subtitle/Subtitle";
 export * from "./ui/text/Text";
 export * from "./products/product-grid/ProductGrid";
 export * from "./products/product-grid/ProductGridItem";
+export * from "./ui/sidebar/Sidebar";
