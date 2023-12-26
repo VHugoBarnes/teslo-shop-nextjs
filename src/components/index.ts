@@ -1,4 +1,5 @@
 export * from "./ui/not-found/PageNotFound";
+export * from "./ui/not-found/ItemNotFound";
 export * from "./ui/top-menu/TopMenu";
 export * from "./ui/top-menu/TopMenuButton";
 export * from "./ui/title/Title";

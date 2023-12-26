@@ -1,8 +1,13 @@
 import React from "react";
 
-export function Text({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export function Text({ children, className }: Props) {
   return (
-    <p className="antialiased">
+    <p className={`antialiased ${className}`}>
       {children}
     </p>
   );

@@ -1,8 +1,13 @@
 import React from "react";
 
-export function Subtitle({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export function Subtitle({ children, className }: Props) {
   return (
-    <h3 className="antialiased text-xl font-semibold">
+    <h3 className={`antialiased text-xl font-semibold ${className}`}>
       {children}
     </h3>
   );

@@ -25,8 +25,8 @@ export function TopMenu() {
         <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href="/category/women">
           Women
         </Link>
-        <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href="/category/children">
-          Children
+        <Link className="m-2 p-2 rounded-md transition-all hover:bg-gray-100" href="/category/kid">
+          Kid
         </Link>
       </div>
 
