@@ -1,4 +1,4 @@
-import { SizeSelector, Subtitle, Text, Title } from "@/components";
+import { QuantitySelector, SizeSelector, Subtitle, Text, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -33,6 +33,7 @@ export default function ProductPage({ params }: Props) {
         <SizeSelector availableSizes={product.sizes} selectedSize={product.sizes[0]} />
 
         {/* Quantity Selector */}
+        <QuantitySelector quantity={1} />
 
         {/* Button */}
         <button className="btn-primary">
