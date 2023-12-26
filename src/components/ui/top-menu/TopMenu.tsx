@@ -2,6 +2,7 @@ import { titleFont } from "@/config/fonts";
 import Link from "next/link";
 import React from "react";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
+import { TopMenuButton } from "@/components";
 
 export function TopMenu() {
   return (
@@ -40,9 +41,7 @@ export function TopMenu() {
           <IoCartOutline className="w-5 h-5" />
         </Link>
 
-        <button className="m-2 p-2 rounded-md transition-all hover:bg-gray-100">
-          Menu
-        </button>
+        <TopMenuButton />
       </div>
     </nav>
   );
