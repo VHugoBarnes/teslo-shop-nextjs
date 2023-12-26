@@ -3,6 +3,8 @@ import React from "react";
 
 export default function NotFoundCategory() {
   return (
-    <PageNotFound />
+    <main className="h-screen">
+      <PageNotFound />
+    </main>
   );
 };
