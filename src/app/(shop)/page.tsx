@@ -1,9 +1,12 @@
+import { Subtitle, Text, Title } from "@/components";
 import { titleFont } from "@/config/fonts";
 
 export default function Home() {
   return (
-    <div className="">
-      <h1 className={`${titleFont.className} font-bold text-3xl`}>Hola Mundo</h1>
+    <div className="space-y-2">
+      <Title>Hello World</Title>
+      <Subtitle>Subtitle</Subtitle>
+      <Text>This is a text</Text>
     </div>
   );
 }
