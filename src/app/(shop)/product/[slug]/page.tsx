@@ -1,4 +1,4 @@
-import { QuantitySelector, SizeSelector, Subtitle, Text, Title } from "@/components";
+import { ProductMobileSlideShow, ProductSlideShow, QuantitySelector, SizeSelector, Subtitle, Text, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -21,7 +21,11 @@ export default function ProductPage({ params }: Props) {
     <div className="grid grid-col-1 md:grid-cols-3 gap-3">
       {/* Slideshow */}
       <div className="col-span-1 md:col-span-2">
-        Hi
+        {/* Mobile slideshow */}
+        <ProductMobileSlideShow title={product.title} images={product.images} className="block md:hidden" />
+
+        {/* Desktop slideshow */}
+        <ProductSlideShow title={product.title} images={product.images} className="hidden md:block" />
       </div>
 
       {/* Detalles */}
@@ -45,7 +49,7 @@ export default function ProductPage({ params }: Props) {
           Description
         </Subtitle>
 
-        <Text className="font-light">
+        <Text className="font-light leading-relaxed">
           {product.description}
         </Text>
       </div>
