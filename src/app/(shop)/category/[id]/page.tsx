@@ -1,11 +1,12 @@
 import { ItemNotFound, ProductGrid, Subtitle, Title } from "@/components";
+import { Category } from "@/interfaces";
 import { initialData } from "@/seed/seed";
 import { notFound } from "next/navigation";
 import React from "react";
 
 interface Props {
   params: {
-    id: string
+    id: Category
   }
 };
 
