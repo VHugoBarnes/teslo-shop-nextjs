@@ -1,5 +1,5 @@
 import { initialData } from "./seed";
-import prisma from "../lib/prisma";
+import { prisma } from "../lib/prisma";
 
 async function main() {
   const { categories, products } = initialData;
