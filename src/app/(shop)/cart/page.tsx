@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const productsInCart: Product[] = [
-  // initialData.products[0],
+  initialData.products[0],
   // initialData.products[1],
   // initialData.products[2],
 ];
@@ -24,7 +24,7 @@ export default function CartPage() {
           Cart
         </Title>
 
-        <div className="flex flex-col md:flex-row items-start space-y-8 space-x-0 md:space-x-10 md:space-y-0">
+        <div className="flex flex-col md:flex-row items-start space-y-10 space-x-0 md:space-x-10 md:space-y-0">
           {/* Carrito */}
           <div className="flex flex-col mt-5 space-y-5">
             <span className="text-xl">Add more items</span>
@@ -57,7 +57,7 @@ export default function CartPage() {
           </div>
 
           {/* Checkout */}
-          <div className="bg-white rounded-xl shadow-xl p-7 space-y-4 flex-grow">
+          <div className="bg-white rounded-xl shadow-xl p-7 space-y-4 flex-grow w-full md:w-auto">
             <Subtitle>
               Order summary
             </Subtitle>
