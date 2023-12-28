@@ -69,7 +69,7 @@ export function ProductSlideShow({ images, title, className }: Props) {
                 alt={title}
                 width={300}
                 height={300}
-                className="rounded-lg object-fill"
+                className="rounded-lg object-fill cursor-pointer"
               />
             </SwiperSlide>
           ))
