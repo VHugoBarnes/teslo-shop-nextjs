@@ -5,6 +5,7 @@ import { getProductBySlugWithImages } from "@/actions";
 import { notFound } from "next/navigation";
 import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
+import { AddToCard } from "./ui/AddToCard";
 
 type PropsMetadata = {
   params: { slug: string }
@@ -64,16 +65,7 @@ export default async function ProductPage({ params }: PropsComponent) {
         <Title>{product.title}</Title>
         <Text>${product.price}</Text>
 
-        {/* Size selector */}
-        <SizeSelector availableSizes={product.sizes} selectedSize={product.sizes[0]} />
-
-        {/* Quantity Selector */}
-        <QuantitySelector quantity={1} />
-
-        {/* Button */}
-        <button className="btn-primary">
-          Add to cart
-        </button>
+        <AddToCard product={product} />
 
         {/* Description */}
         <Subtitle>
