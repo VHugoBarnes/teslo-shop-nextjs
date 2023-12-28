@@ -1,6 +1,6 @@
 "use client";
 
-import { getStockBySlug } from "@/actions/product/get-stock-by-slug";
+import { getStockBySlug } from "@/actions";
 import { Subtitle } from "@/components";
 import React from "react";
 
