@@ -1,24 +1,79 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
+import { NavigationItem } from "./NavigationItem";
+import { useRouter, useSearchParams } from "next/navigation";
+interface Props {
+  totalPages: number;
+  currentPage: number;
+  path: string;
+}
 
-export const NavigationNumberList = ({ totalPages, currentPage, path }: { totalPages: number; currentPage: number; path: string }) => {
+const MAX_AMOUNT_TO_DISPLAY = 5;
+const getNewSet = ({ listOfPages, currentSet }: { listOfPages: number[], currentSet: number }) => {
+  const x = listOfPages.slice(currentSet * MAX_AMOUNT_TO_DISPLAY, (currentSet * MAX_AMOUNT_TO_DISPLAY) + MAX_AMOUNT_TO_DISPLAY);
+  return x;
+};
+
+export const NavigationNumberList = ({ totalPages, currentPage, path }: Props) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const pages = Array(totalPages).fill(0).map((_, i) => (i + 1));
+  const MAX_SETS = Math.ceil(totalPages / MAX_AMOUNT_TO_DISPLAY);
+  let currentSetNumber = Math.ceil(currentPage / MAX_AMOUNT_TO_DISPLAY) - 1;
+  const pageSetToDisplay = getNewSet({ listOfPages: pages, currentSet: currentSetNumber });
+
+  const createQueryString = (name: string, value: string): string => {
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+
+    return params.toString();
+  };
+
+  const changeCurrentSet = (newPage: number) => {
+    router.push(`${path}?${createQueryString("page", newPage.toString())}`);
+  };
+
   return (
     <>
-      {Array(totalPages).fill(0).map((_, i) => (
-        <li
-          className={`page-item ${i + 1 === currentPage ? "active" : ""}`}
-          key={i}
-        >
-          <Link
-            className={`${i + 1 === currentPage ? "text-white bg-blue-500 hover:bg-blue-600" : "text-gray-800 hover:text-gray-800 hover:bg-gray-200"} page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 focus:shadow-none`}
-            href={`${path}?page=${i + 1}`}
+      {
+        currentSetNumber > 0 && (
+          <NavigationItem
+            isActive={false}
+            onClick={() => {
+              changeCurrentSet(pageSetToDisplay[0] - 1);
+            }}
           >
-            {i + 1}
-          </Link>
-        </li>
-      ))}
+            ...
+          </NavigationItem>
+        )
+      }
+
+      {
+        pageSetToDisplay.map((i) => (
+          <NavigationItem
+            key={i}
+            isActive={i === currentPage}
+            href={`${path}?${createQueryString("page", i.toString())}`}
+          >
+            {i}
+          </NavigationItem>
+        ))
+      }
+
+      {
+        MAX_SETS > (currentSetNumber + 1) && (
+          <NavigationItem
+            isActive={false}
+            onClick={() => {
+              changeCurrentSet(pageSetToDisplay[pageSetToDisplay.length - 1] + 1);
+            }}
+          >
+            ...
+          </NavigationItem>
+        )
+      }
     </>
   );
 };
