@@ -29,7 +29,8 @@ export function AddToCard({ product }: Props) {
       quantity: quantity,
       size: size,
       slug: product.slug,
-      title: product.title
+      title: product.title,
+      inStock: product.inStock
     });
     setSizeError(false);
     setQuantity(1);

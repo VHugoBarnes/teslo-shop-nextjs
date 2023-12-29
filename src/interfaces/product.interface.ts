@@ -20,6 +20,7 @@ export interface CartProduct {
   quantity: number;
   size: Size;
   image: string;
+  inStock: number;
 };
 
 export type Category = "men" | "women" | "kid" | "unisex";
