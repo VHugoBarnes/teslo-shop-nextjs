@@ -24,17 +24,17 @@ export function OrderSummary() {
 
         <div className="flex items-center justify-between">
           <p>Subtotal</p>
-          <div className="flex items-center space-x-1">${loading ? <p className="w-4 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{priceWithoutTax.toFixed(2)} </p>}</div>
+          <div className="flex items-center space-x-1">${loading ? <p className="w-8 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{priceWithoutTax.toFixed(2)} </p>}</div>
         </div>
 
         <div className="flex items-center justify-between">
           <p>Tax (15%)</p>
-          <div className="flex items-center space-x-1">${loading ? <p className="w-4 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{(priceWithoutTax * 0.15).toFixed(2)} </p>}</div>
+          <div className="flex items-center space-x-1">${loading ? <p className="w-8 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{(priceWithoutTax * 0.15).toFixed(2)} </p>}</div>
         </div>
 
         <div className="flex items-center justify-between">
           <p className="text-xl font-semibold">Total:</p>
-          <div className="flex items-center space-x-1">${loading ? <p className="w-4 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{(priceWithoutTax + (priceWithoutTax * 0.15)).toFixed(2)} </p>}</div>
+          <div className="flex items-center space-x-1">${loading ? <p className="w-8 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{(priceWithoutTax + (priceWithoutTax * 0.15)).toFixed(2)} </p>}</div>
         </div>
       </div>
 
