@@ -67,22 +67,28 @@ export function Sidebar() {
         </div>
 
         {/* Menu */}
-        <Link
-          href="/profile"
-          onClick={() => closeSideMenu()}
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
-        >
-          <IoPersonOutline size={30} />
-          <span className="text-xl">Profile</span>
-        </Link>
+        {
+          isAuthenticated && (
+            <>
+              <Link
+                href="/profile"
+                onClick={() => closeSideMenu()}
+                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
+              >
+                <IoPersonOutline size={30} />
+                <span className="text-xl">Profile</span>
+              </Link>
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
-        >
-          <IoTicketOutline size={30} />
-          <span className="text-xl">Orders</span>
-        </Link>
+              <Link
+                href="/"
+                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
+              >
+                <IoTicketOutline size={30} />
+                <span className="text-xl">Orders</span>
+              </Link>
+            </>
+          )
+        }
 
         {
           !isAuthenticated && (
