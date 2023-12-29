@@ -6,6 +6,7 @@ interface Cart {
   cart: CartProduct[];
   getTotalItems: () => number;
   addProductToCart: (product: CartProduct) => void;
+  updateProductQuantity: (product: CartProduct) => void;
   // updateProductQuantity;
   // removeProduct;
 };
@@ -20,6 +21,24 @@ export const useCartStore = create<Cart>()(
         return cart.reduce((acc, curr) => {
           return acc + curr.quantity;
         }, 0);
+      },
+      updateProductQuantity: (product: CartProduct) => {
+        const { cart } = get();
+        const productInCart = cart.some((item) => item.id === product.id && item.size === product.size);
+
+        if (!productInCart) return;
+
+        const updatedCartProducts = cart.map((item) => {
+          if (item.id === product.id && item.size === product.size) {
+            return {
+              ...product,
+            };
+          } else {
+            return item;
+          }
+        });
+
+        set({ cart: updatedCartProducts });
       },
       addProductToCart: (product: CartProduct) => {
         const { cart } = get();

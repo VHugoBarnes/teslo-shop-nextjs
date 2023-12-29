@@ -11,9 +11,9 @@ export default function CartPage() {
           Cart
         </Title>
 
-        <div className="flex flex-col md:flex-row items-start space-y-10 space-x-0 md:space-x-10 md:space-y-0">
+        <div className="flex flex-col lg:flex-row items-start space-y-10 space-x-0 lg:space-x-10 lg:space-y-0">
           {/* Carrito */}
-          <div className="flex flex-col mt-5 space-y-6 w-5/12">
+          <div className="flex flex-col mt-5 space-y-6 w-full lg:w-5/12">
             <div className="space-y-2">
               <p className="text-xl">Add more items</p>
               <Link href="/" className="underline">Continue shopping</Link>
@@ -24,7 +24,7 @@ export default function CartPage() {
           </div>
 
           {/* Checkout */}
-          <div className="bg-white rounded-xl shadow-xl p-7 space-y-4 flex-grow w-full md:w-4/12">
+          <div className="bg-white rounded-xl shadow-xl p-7 space-y-4 flex-grow w-full lg:w-4/12">
             <Subtitle>
               Order summary
             </Subtitle>
