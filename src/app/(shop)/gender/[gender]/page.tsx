@@ -25,7 +25,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   }
 
   const { currentPage, products, totalPages } = await getPaginatedProductsWithImages({ page: page, gender: gender });
-  console.log({ currentPage, totalPages });
 
   return (
     <div className="space-y-2 px-2 sm:px-10">
