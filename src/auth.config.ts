@@ -8,7 +8,7 @@ import bcryptjs from "bcryptjs";
 export const authConfig: NextAuthConfig = {
   pages: {
     signIn: "/auth/login",
-    newUser: "auth/new-account"
+    newUser: "auth/new-account",
   },
   providers: [
     Credentials({
@@ -33,4 +33,4 @@ export const authConfig: NextAuthConfig = {
   ]
 };
 
-export const { signIn, signOut, auth } = NextAuth(authConfig);
+export const { signIn, signOut, auth, handlers } = NextAuth(authConfig);
