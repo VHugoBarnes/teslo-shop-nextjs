@@ -22,7 +22,7 @@ export default function OrderPage({ params }: Props) {
   const { id } = params; // todo verify
 
   return (
-    <div className="flex justify-center items-center mb-72 px-0 sm:px-10">
+    <div className="flex justify-center items-center mb-72 px-2 sm:px-10">
       <div className="flex flex-col w-full md:w-9/12">
         <Title>
           Order #{id}

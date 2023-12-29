@@ -34,7 +34,7 @@ export function Sidebar() {
       {/* Sidemenu */}
       <nav className={
         clsx(
-          "fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-200",
+          "fixed p-5 right-0 top-0 w-9/12 md:w-6/12 lg:w-3/12 h-screen bg-white z-20 shadow-2xl transform transition-all duration-200",
           {
             "translate-x-full": !isSideMenuOpen
           }
@@ -64,34 +64,34 @@ export function Sidebar() {
         {/* Menu */}
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoPersonOutline size={30} />
-          <span className="ml-3 text-xl">Profile</span>
+          <span className="text-xl">Profile</span>
         </Link>
 
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoTicketOutline size={30} />
-          <span className="ml-3 text-xl">Orders</span>
+          <span className="text-xl">Orders</span>
         </Link>
 
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoLogInOutline size={30} />
-          <span className="ml-3 text-xl">Login</span>
+          <span className="text-xl">Login</span>
         </Link>
 
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoLogOutOutline size={30} />
-          <span className="ml-3 text-xl">Logout</span>
+          <span className="text-xl">Logout</span>
         </Link>
 
         {/* Divider */}
@@ -99,26 +99,26 @@ export function Sidebar() {
 
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoShirtOutline size={30} />
-          <span className="ml-3 text-xl">Products</span>
+          <span className="text-xl">Products</span>
         </Link>
 
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoTicketOutline size={30} />
-          <span className="ml-3 text-xl">Orders</span>
+          <span className="text-xl">Orders</span>
         </Link>
 
         <Link
           href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
         >
           <IoPeopleOutline size={30} />
-          <span className="ml-3 text-xl">Users</span>
+          <span className="text-xl">Users</span>
         </Link>
       </nav>
     </div>

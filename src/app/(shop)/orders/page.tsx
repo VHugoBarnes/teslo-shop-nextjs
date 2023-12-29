@@ -5,7 +5,7 @@ import { IoCardOutline } from "react-icons/io5";
 
 export default function OrdersPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 px-2 sm:px-10">
       <Title>Orders</Title>
 
       <div className="mb-10">

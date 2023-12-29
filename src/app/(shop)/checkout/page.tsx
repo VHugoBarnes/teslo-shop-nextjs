@@ -12,7 +12,7 @@ const productsInCart = [
 
 export default function CheckoutPage() {
   return (
-    <div className="flex justify-center items-center mb-72 px-0 sm:px-10">
+    <div className="flex justify-center items-center mb-72 px-2 sm:px-10">
       <div className="flex flex-col w-full md:w-9/12">
         <Title>
           Verify order

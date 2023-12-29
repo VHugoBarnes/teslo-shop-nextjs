@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: Props) {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 px-2 md:px-10">
       <Title>Shop</Title>
       <Subtitle>Men, Women, Child</Subtitle>
 

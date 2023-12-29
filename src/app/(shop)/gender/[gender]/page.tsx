@@ -28,7 +28,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   console.log({ currentPage, totalPages });
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 px-2 sm:px-10">
       <Title>Shop</Title>
       <Subtitle className="capitalize">{gender}</Subtitle>
 

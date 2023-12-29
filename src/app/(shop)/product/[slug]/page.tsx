@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: PropsComponent) {
   }
 
   return (
-    <div className="grid grid-col-1 md:grid-cols-3 gap-3">
+    <div className="grid grid-col-1 md:grid-cols-3 gap-3 px-0 sm:px-10">
       {/* Slideshow */}
       <div className="col-span-1 md:col-span-2">
         {/* Mobile slideshow */}
@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: PropsComponent) {
       </div>
 
       {/* Detalles */}
-      <div className="col-span-1 p-5 space-y-4">
+      <div className="col-span-1 px-4 space-y-4">
         <StockLabel slug={product.slug} />
         <Title>{product.title}</Title>
         <Text>${product.price}</Text>
