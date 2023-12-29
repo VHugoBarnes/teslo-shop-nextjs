@@ -24,11 +24,12 @@ export async function generateMetadata({ params }: PropsMetadata, parent: Resolv
   }
 
   return {
+    metadataBase: new URL("http://localhost:8080"),
     title: product.title,
     description: product.description,
     openGraph: {
       title: product.title,
-      images: product.images.map(image => (`/products/${image}`)),
+      // images: product.images.map(image => (`/products/${image}`)),
       description: product.description
     },
   };
