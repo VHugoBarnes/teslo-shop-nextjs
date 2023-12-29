@@ -112,29 +112,35 @@ export function Sidebar() {
         {/* Divider */}
         <div className="w-full h-px bg-gray-200 my-10" />
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
-        >
-          <IoShirtOutline size={30} />
-          <span className="text-xl">Products</span>
-        </Link>
+        {
+          session?.user.role === "admin" && (
+            <>
+              <Link
+                href="/"
+                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
+              >
+                <IoShirtOutline size={30} />
+                <span className="text-xl">Products</span>
+              </Link>
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
-        >
-          <IoTicketOutline size={30} />
-          <span className="text-xl">Orders</span>
-        </Link>
+              <Link
+                href="/"
+                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
+              >
+                <IoTicketOutline size={30} />
+                <span className="text-xl">Orders</span>
+              </Link>
 
-        <Link
-          href="/"
-          className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
-        >
-          <IoPeopleOutline size={30} />
-          <span className="text-xl">Users</span>
-        </Link>
+              <Link
+                href="/"
+                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all space-x-3"
+              >
+                <IoPeopleOutline size={30} />
+                <span className="text-xl">Users</span>
+              </Link>
+            </>
+          )
+        }
       </nav>
     </div>
   );

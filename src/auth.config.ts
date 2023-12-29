@@ -10,6 +10,18 @@ export const authConfig: NextAuthConfig = {
     signIn: "/auth/login",
     newUser: "auth/new-account",
   },
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.data = user;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      session.user = token.data as any; // type defined in /nextauth.d.ts
+      return session;
+    },
+  },
   providers: [
     Credentials({
       async authorize(credentials) {
