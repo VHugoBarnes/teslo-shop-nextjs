@@ -4,12 +4,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
 import { authenticate } from "@/actions";
+import { IoInformationOutline } from "react-icons/io5";
+import clsx from "clsx";
 
 export function LoginForm() {
   const [errorMessage, dispatch] = ReactDOM.useFormState(authenticate, undefined);
 
   return (
-    <form action={dispatch} className="flex flex-col">
+    <form action={dispatch} className="flex flex-col space-y-2">
       <label htmlFor="email">Email</label>
       <input
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
@@ -24,12 +26,20 @@ export function LoginForm() {
         name="password"
       />
 
-      <button
-        className="btn-primary"
-        type="submit"
+      <div
+        className="flex h-8 items-end space-x-1"
+        aria-live="polite"
+        aria-atomic="true"
       >
-        Login
-      </button>
+        {errorMessage && (
+          <div className="flex">
+            <IoInformationOutline className="h-5 w-5 text-red-500" />
+            <p className="text-sm text-red-500">{errorMessage}</p>
+          </div>
+        )}
+      </div>
+
+      <LoginButton />
 
       {/* divisor line */}
       <div className="flex items-center my-5">
@@ -46,3 +56,20 @@ export function LoginForm() {
     </form>
   );
 };
+
+function LoginButton() {
+  const { pending } = ReactDOM.useFormStatus();
+
+  return (
+    <button
+      className={clsx({
+        "btn-primary": !pending,
+        "bg-gray-600 text-white py-2 px-4 rounded transition-all": pending
+      })}
+      disabled={pending}
+      type="submit"
+    >
+      Login
+    </button>
+  );
+}
