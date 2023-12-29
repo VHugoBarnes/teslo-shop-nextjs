@@ -6,9 +6,17 @@ import Link from "next/link";
 import { authenticate } from "@/actions";
 import { IoInformationOutline } from "react-icons/io5";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
-  const [errorMessage, dispatch] = ReactDOM.useFormState(authenticate, undefined);
+  const [state, dispatch] = ReactDOM.useFormState(authenticate, undefined);
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (state === "[success]") {
+      router.replace("/");
+    }
+  }, [state]);
 
   return (
     <form action={dispatch} className="flex flex-col space-y-2">
@@ -31,10 +39,10 @@ export function LoginForm() {
         aria-live="polite"
         aria-atomic="true"
       >
-        {errorMessage && (
+        {state === "[invalid-credentials]" && (
           <div className="flex">
             <IoInformationOutline className="h-5 w-5 text-red-500" />
-            <p className="text-sm text-red-500">{errorMessage}</p>
+            <p className="text-sm text-red-500">{state}</p>
           </div>
         )}
       </div>
