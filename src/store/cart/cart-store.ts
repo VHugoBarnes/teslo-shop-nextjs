@@ -7,8 +7,7 @@ interface Cart {
   getTotalItems: () => number;
   addProductToCart: (product: CartProduct) => void;
   updateProductQuantity: (product: CartProduct) => void;
-  // updateProductQuantity;
-  // removeProduct;
+  removeProduct: (product: CartProduct) => void;
 };
 
 export const useCartStore = create<Cart>()(
@@ -37,6 +36,12 @@ export const useCartStore = create<Cart>()(
             return item;
           }
         });
+
+        set({ cart: updatedCartProducts });
+      },
+      removeProduct: (product: CartProduct) => {
+        const { cart } = get();
+        const updatedCartProducts = cart.filter((item) => (!(item.id === product.id && item.size === product.size)));
 
         set({ cart: updatedCartProducts });
       },
