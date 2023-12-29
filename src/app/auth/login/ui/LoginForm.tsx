@@ -16,7 +16,7 @@ export function LoginForm() {
     if (state === "[success]") {
       router.replace("/");
     }
-  }, [state]);
+  }, [state, router]);
 
   return (
     <form action={dispatch} className="flex flex-col space-y-2">
