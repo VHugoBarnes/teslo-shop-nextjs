@@ -2,6 +2,7 @@ import { Subtitle, Title } from "@/components";
 import Link from "next/link";
 import React from "react";
 import { ProductsInCart } from "./ui/ProductsInCart";
+import { OrderSummary } from "./ui/OrderSummary";
 
 export default function CartPage() {
   return (
@@ -29,25 +30,7 @@ export default function CartPage() {
               Order summary
             </Subtitle>
 
-            <div className="grid grid-cols-2 gap-2">
-              <span>Products</span>
-              <span className="text-right">3 articles</span>
-
-              <span>Subtotal</span>
-              <span className="text-right">$100</span>
-
-              <span>Tax (15%)</span>
-              <span className="text-right">$15</span>
-
-              <span className="text-xl font-semibold">Total:</span>
-              <span className="text-right text-xl font-semibold">$115</span>
-            </div>
-
-            <div>
-              <Link href="/checkout/address" className="flex btn-primary justify-center">
-                Checkout
-              </Link>
-            </div>
+            <OrderSummary />
           </div>
         </div>
       </div>
