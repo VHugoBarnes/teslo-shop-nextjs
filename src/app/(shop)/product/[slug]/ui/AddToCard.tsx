@@ -2,6 +2,7 @@
 
 import { QuantitySelector, SizeSelector } from "@/components";
 import { Product, Size } from "@/interfaces";
+import { useCartStore } from "@/store";
 import React from "react";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export function AddToCard({ product }: Props) {
+  const addProductToCart = useCartStore(state => state.addProductToCart);
+
   const [size, setSize] = React.useState<Size | undefined>();
   const [quantity, setQuantity] = React.useState<number>(1);
   const [sizeError, setSizeError] = React.useState(false);
@@ -16,8 +19,21 @@ export function AddToCard({ product }: Props) {
   const addToCart = () => {
     if (size === undefined) {
       setSizeError(true);
+      return;
     }
-    console.log({ size, quantity });
+
+    addProductToCart({
+      id: product.id,
+      image: product.images[0],
+      price: product.price,
+      quantity: quantity,
+      size: size,
+      slug: product.slug,
+      title: product.title
+    });
+    setSizeError(false);
+    setQuantity(1);
+    setSize(undefined);
   };
 
   React.useEffect(() => {
