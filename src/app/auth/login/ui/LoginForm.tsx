@@ -7,7 +7,6 @@ import { authenticate } from "@/actions";
 
 export function LoginForm() {
   const [errorMessage, dispatch] = ReactDOM.useFormState(authenticate, undefined);
-  console.log({ errorMessage });
 
   return (
     <form action={dispatch} className="flex flex-col">
