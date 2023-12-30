@@ -1,6 +1,8 @@
 "use client";
 
+import { login, registerUser } from "@/actions";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -11,6 +13,9 @@ type Inputs = {
 }
 
 export function RegisterForm() {
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const {
     register,
     handleSubmit,
@@ -18,7 +23,19 @@ export function RegisterForm() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
+    setErrorMessage("");
+    const response = await registerUser(data.fullName, data.email, data.password);
+
+    if (!response.ok) {
+      setErrorMessage(response.message);
+      return;
+    }
+
+    const loginResponse = await login(data.email.toLowerCase(), data.password);
+
+    if (loginResponse.ok) {
+      window.location.replace("/");
+    }
   };
 
   return (
@@ -56,6 +73,7 @@ export function RegisterForm() {
         {errors.password && <span className="text-red-500">This field is required</span>}
       </div>
 
+      {errorMessage && <span className="text-red-500">An error ocurred</span>}
       <button
         className="btn-primary"
       >
