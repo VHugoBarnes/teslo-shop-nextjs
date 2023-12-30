@@ -1,8 +1,10 @@
 "use client";
 
-import { Country } from "@/interfaces";
+import { removeUserAddress, setUserAddress } from "@/actions";
+import { Address, Country } from "@/interfaces";
 import { useAddressStore } from "@/store";
 import clsx from "clsx";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -11,30 +13,47 @@ type FormInputs = {
   lastName: string;
   address: string;
   address2?: string;
-  postalcode: string;
+  postalCode: string;
   city: string;
   country: string;
   phone: string;
   rememberAddress: boolean;
 }
 
-export function AddressForm({ countries }: { countries: Country[] }) {
+interface Props {
+  countries: Country[];
+  storedAddress?: Partial<Address>;
+}
+
+export function AddressForm({ countries, storedAddress = {} }: Props) {
   const setAddressStore = useAddressStore(state => state.setAddress);
   const address = useAddressStore(state => state.address);
 
+  const { data: session } = useSession();
+
   const { handleSubmit, register, formState: { isValid }, reset } = useForm<FormInputs>({
-    defaultValues: {}
+    defaultValues: {
+      ...storedAddress,
+      rememberAddress: false
+    }
   });
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     setAddressStore(data);
+
+    if (data.rememberAddress) {
+      const { rememberAddress, ...restAddress } = data;
+      await setUserAddress(restAddress, session!.user.id);
+    } else {
+      await removeUserAddress(session!.user.id);
+    }
   };
 
   React.useEffect(() => {
     if (address.firstName) {
       reset(address);
     }
-  }, []);
+  }, [address, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
@@ -79,7 +98,7 @@ export function AddressForm({ countries }: { countries: Country[] }) {
         <input
           type="text"
           className="p-2 border rounded-md bg-gray-200"
-          {...register("postalcode", { required: true })}
+          {...register("postalCode", { required: true })}
         />
       </div>
 

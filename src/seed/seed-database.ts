@@ -5,6 +5,7 @@ import { prisma } from "../lib/prisma";
 async function main() {
   const { categories, products, users } = initialData;
 
+  await prisma.userAddress.deleteMany();
   await prisma.country.deleteMany();
   await prisma.user.deleteMany();
   await prisma.productImage.deleteMany();
