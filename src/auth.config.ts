@@ -12,10 +12,6 @@ export const authConfig: NextAuthConfig = {
   },
   callbacks: {
     authorized({ auth }) {
-      console.log({ auth });
-      console.log("=========================================");
-      console.log();
-
       return true;
     },
     jwt({ token, user }) {
