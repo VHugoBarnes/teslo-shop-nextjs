@@ -2,7 +2,7 @@ import { Subtitle, Title } from "@/components";
 import Link from "next/link";
 import React from "react";
 import { ProductsInCart } from "./ui/ProductsInCart";
-import { OrderSummary } from "./ui/OrderSummary";
+import { PlaceOrderSummary } from "./ui/PlaceOrderSummary";
 import { DeliveryAddess } from "./ui/DeliveryAddess";
 
 export default function CheckoutPage() {
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
                 Order summary
               </Subtitle>
 
-              <OrderSummary />
+              <PlaceOrderSummary />
             </div>
 
             <div className="w-full space-y-2">
@@ -51,9 +51,9 @@ export default function CheckoutPage() {
                 </span>
               </p>
 
-              <Link href="/orders/123" className="flex btn-primary justify-center">
+              <button className="flex w-full btn-primary justify-center">
                 Order
-              </Link>
+              </button>
             </div>
           </div>
         </div>

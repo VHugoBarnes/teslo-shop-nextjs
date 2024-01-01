@@ -1,11 +1,9 @@
 "use client";
 
-import { Subtitle } from "@/components";
 import { useCartStore } from "@/store";
-import Link from "next/link";
 import React from "react";
 
-export function OrderSummary() {
+export function PlaceOrderSummary() {
   const totalItems = useCartStore(state => state.getTotalItems());
   const priceWithoutTax = useCartStore(state => state.getPriceWithoutTax());
   const [loading, setLoading] = React.useState(true);
