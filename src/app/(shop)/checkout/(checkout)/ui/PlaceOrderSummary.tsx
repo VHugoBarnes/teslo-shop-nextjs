@@ -1,9 +1,9 @@
 "use client";
 
-import { useAddressStore, useCartStore } from "@/store";
-import { sleep } from "@/utils/sleep";
-import clsx from "clsx";
 import React from "react";
+import clsx from "clsx";
+import { useAddressStore, useCartStore } from "@/store";
+import { placeOrder } from "@/actions";
 
 export function PlaceOrderSummary() {
   const address = useAddressStore(state => state.address);
@@ -22,8 +22,8 @@ export function PlaceOrderSummary() {
       quantity: c.quantity,
       size: c.size
     }));
-    console.log(address);
-    console.log(productsToOrder);
+    const x = await placeOrder(productsToOrder, address);
+    console.log(x);
 
     setIsPlacingOrder(false);
   };
