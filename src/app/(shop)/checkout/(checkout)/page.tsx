@@ -1,17 +1,9 @@
-import { QuantitySelector, Subtitle, Text, Title } from "@/components";
-import { initialData } from "@/seed/seed";
-import Image from "next/image";
+import { Subtitle, Title } from "@/components";
 import Link from "next/link";
 import React from "react";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSummary } from "./ui/OrderSummary";
 import { DeliveryAddess } from "./ui/DeliveryAddess";
-
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-];
 
 export default function CheckoutPage() {
   return (
