@@ -35,25 +35,13 @@ export default function CheckoutPage() {
 
             <div className="w-full h-0.5 rounded bg-gray-200" />
 
+            {/* Order summary */}
             <div className="space-y-2">
               <Subtitle>
                 Order summary
               </Subtitle>
 
               <PlaceOrderSummary />
-            </div>
-
-            <div className="w-full space-y-2">
-              {/* Disclaimer */}
-              <p>
-                <span className="text-xs">
-                  Clicking on &quot;Order&quot; you accept our <a href="#" className="underline">terms and conditions</a> and <a href="#" className="underline">privacy policy</a>
-                </span>
-              </p>
-
-              <button className="flex w-full btn-primary justify-center">
-                Order
-              </button>
             </div>
           </div>
         </div>

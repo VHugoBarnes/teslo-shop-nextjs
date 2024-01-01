@@ -1,12 +1,32 @@
 "use client";
 
-import { useCartStore } from "@/store";
+import { useAddressStore, useCartStore } from "@/store";
+import { sleep } from "@/utils/sleep";
+import clsx from "clsx";
 import React from "react";
 
 export function PlaceOrderSummary() {
+  const address = useAddressStore(state => state.address);
   const totalItems = useCartStore(state => state.getTotalItems());
+  const cart = useCartStore(state => state.cart);
   const priceWithoutTax = useCartStore(state => state.getPriceWithoutTax());
+
   const [loading, setLoading] = React.useState(true);
+  const [isPlacingOrder, setIsPlacingOrder] = React.useState(false);
+
+  const onPlaceOrder = async () => {
+    setIsPlacingOrder(true);
+
+    const productsToOrder = cart.map(c => ({
+      productId: c.id,
+      quantity: c.quantity,
+      size: c.size
+    }));
+    console.log(address);
+    console.log(productsToOrder);
+
+    setIsPlacingOrder(false);
+  };
 
   React.useEffect(() => {
     setLoading(false);
@@ -34,6 +54,29 @@ export function PlaceOrderSummary() {
           <p className="text-xl font-semibold">Total:</p>
           <div className="flex items-center space-x-1">${loading ? <p className="w-8 h-4 bg-gray-200 rounded animate-pulse"></p> : <p>{(priceWithoutTax + (priceWithoutTax * 0.15)).toFixed(2)} </p>}</div>
         </div>
+      </div>
+
+      {/* Disclaimer & Order */}
+      <div className="w-full space-y-2">
+        <p>
+          <span className="text-xs">
+            Clicking on &quot;Order&quot; you accept our <a href="#" className="underline">terms and conditions</a> and <a href="#" className="underline">privacy policy</a>
+          </span>
+        </p>
+
+        {/* <p className="text-red-500 text-center font-semibold">Order creation error</p> */}
+        <button
+          onClick={() => onPlaceOrder()}
+          className={clsx("flex w-full justify-center cursor-pointer", {
+            "btn-primary": !isPlacingOrder,
+            "bg-gray-600 text-white py-2 px-4 rounded transition-all": isPlacingOrder
+          })}
+          disabled={isPlacingOrder}
+        >
+          {
+            isPlacingOrder ? "Ordering..." : "Order"
+          }
+        </button>
       </div>
     </>
   );
