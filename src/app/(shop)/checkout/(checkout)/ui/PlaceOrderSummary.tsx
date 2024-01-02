@@ -22,8 +22,8 @@ export function PlaceOrderSummary() {
       quantity: c.quantity,
       size: c.size
     }));
-    const x = await placeOrder(productsToOrder, address);
-    console.log(x);
+    const response = await placeOrder(productsToOrder, address);
+    console.log(response);
 
     setIsPlacingOrder(false);
   };
