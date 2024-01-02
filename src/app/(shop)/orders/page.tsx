@@ -1,9 +1,17 @@
+import { getOrders } from "@/actions";
 import { Title } from "@/components";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
 import { IoCardOutline } from "react-icons/io5";
 
-export default function OrdersPage() {
+export default async function OrdersPage() {
+  const response = await getOrders();
+
+  if (response.ok === false || response.data.orders === null || response.data.orders?.length === 0) {
+    notFound();
+  }
+
   return (
     <div className="space-y-6 px-2 sm:px-10">
       <Title>Orders</Title>
@@ -26,41 +34,47 @@ export default function OrdersPage() {
               </th>
             </tr>
           </thead>
+
           <tbody>
-            <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Mark
-              </td>
-              <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                <IoCardOutline className="text-green-800" />
+            {
+              response.data.orders.map(order => (
+                <tr
+                  key={order.id}
+                  className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                >
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {order.id}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {order.fullName}
+                  </td>
+                  <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {
+                      order.isPaid
+                        ? (
+                          <>
+                            <IoCardOutline className="text-green-800" />
 
-                <span className='mx-2 text-green-800'>Payed</span>
-              </td>
-              <td className="text-sm text-gray-900 font-light px-6 ">
-                <Link href="/orders/123" className="hover:underline">
-                  View order
-                </Link>
-              </td>
-            </tr>
+                            <span className='mx-2 text-green-800'>Payed</span>
+                          </>
+                        )
+                        : (
+                          <>
+                            <IoCardOutline className="text-red-800" />
 
-            <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-              <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                Mark
-              </td>
-              <td className="flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-
-                <IoCardOutline className="text-red-800" />
-                <span className='mx-2 text-red-800'>Not payed</span>
-
-              </td>
-              <td className="text-sm text-gray-900 font-light px-6 ">
-                <Link href="/orders/123" className="hover:underline">
-                  View order
-                </Link>
-              </td>
-            </tr>
+                            <span className='mx-2 text-red-800'>Not payed</span>
+                          </>
+                        )
+                    }
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 ">
+                    <Link href={`/orders/${order.id}`} className="hover:underline">
+                      View order
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
