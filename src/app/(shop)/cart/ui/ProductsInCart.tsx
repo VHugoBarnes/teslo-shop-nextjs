@@ -3,8 +3,11 @@
 import { useCartStore } from "@/store";
 import React from "react";
 import { ProductCart } from "./ProductCart";
+import { useRouter } from "next/navigation";
 
 export function ProductsInCart() {
+  const router = useRouter();
+
   const [loading, setLoading] = React.useState(true);
   const productsInCart = useCartStore(state => state.cart);
 
@@ -20,6 +23,10 @@ export function ProductsInCart() {
         <div className="w-full h-44 bg-gray-200 rounded animate-pulse"></div>
       </div>
     );
+  }
+
+  if (productsInCart.length === 0) {
+    router.replace("/");
   }
 
   return (

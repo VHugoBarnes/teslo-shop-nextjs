@@ -2,17 +2,23 @@
 
 import React from "react";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import { useAddressStore, useCartStore } from "@/store";
 import { placeOrder } from "@/actions";
 
 export function PlaceOrderSummary() {
+  const router = useRouter();
+
   const address = useAddressStore(state => state.address);
+
   const totalItems = useCartStore(state => state.getTotalItems());
   const cart = useCartStore(state => state.cart);
   const priceWithoutTax = useCartStore(state => state.getPriceWithoutTax());
+  const clearCart = useCartStore(state => state.clearCart);
 
   const [loading, setLoading] = React.useState(true);
   const [isPlacingOrder, setIsPlacingOrder] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
 
   const onPlaceOrder = async () => {
     setIsPlacingOrder(true);
@@ -23,9 +29,31 @@ export function PlaceOrderSummary() {
       size: c.size
     }));
     const response = await placeOrder(productsToOrder, address);
-    console.log(response);
 
-    setIsPlacingOrder(false);
+    if (response.ok === false) {
+      setIsPlacingOrder(false);
+      let errorMess = "";
+      switch (response.message) {
+        case "[no-auth]":
+          errorMess = "User is not authenticated";
+          break;
+        case "[no-product]":
+          errorMess = "One of the products in the order doesn't exist";
+          break;
+        case "[no-products]":
+          errorMess = "Please put items in your shopping cart";
+          break;
+        default:
+          errorMess = response.message;
+          break;
+      }
+      setErrorMessage(errorMess);
+      return;
+    }
+
+    //* Everything went okay
+    clearCart();
+    router.replace(`/orders/${response.data?.transaction.order.id}`);
   };
 
   React.useEffect(() => {
@@ -64,7 +92,7 @@ export function PlaceOrderSummary() {
           </span>
         </p>
 
-        {/* <p className="text-red-500 text-center font-semibold">Order creation error</p> */}
+        <p className="text-red-500 text-center font-semibold">{errorMessage}</p>
         <button
           onClick={() => onPlaceOrder()}
           className={clsx("flex w-full justify-center cursor-pointer", {

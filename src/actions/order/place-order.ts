@@ -23,6 +23,14 @@ export const placeOrder = async (productIds: ProductToOrder[], address: Address)
       };
     }
 
+    if (productIds.length === 0) {
+      return {
+        ok: false,
+        message: "[no-products]",
+        data: null
+      };
+    }
+
     const products = await prisma.product.findMany({
       where: {
         id: {

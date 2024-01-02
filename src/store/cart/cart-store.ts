@@ -9,6 +9,7 @@ interface Cart {
   addProductToCart: (product: CartProduct) => void;
   updateProductQuantity: (product: CartProduct) => void;
   removeProduct: (product: CartProduct) => void;
+  clearCart: () => void;
 };
 
 export const useCartStore = create<Cart>()(
@@ -76,6 +77,9 @@ export const useCartStore = create<Cart>()(
 
         set({ cart: updatedCartProducts });
       },
+      clearCart: () => {
+        set({ cart: [] });
+      }
     }),
     {
       name: "shopping-cart"

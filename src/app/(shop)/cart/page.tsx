@@ -3,6 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSummary } from "./ui/OrderSummary";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cart",
+};
 
 export default function CartPage() {
   return (
