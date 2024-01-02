@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function CartPage() {
   return (
     <div className="flex justify-center items-center mb-72 px-2 sm:px-10">
-      <div className="flex flex-col w-full md:w-9/12">
+      <div className="flex flex-col w-full md:w-9/12 space-y-8">
         <Title>
           Cart
         </Title>
